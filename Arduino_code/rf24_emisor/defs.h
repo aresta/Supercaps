@@ -1,4 +1,4 @@
-// #define DEBUG
+#define DEBUG
 #define SLEEP_MINUTES 15
 #define SLEEP_MINUTES_LONG 60
 #define VOLTAGE_THRESHOLD 2900

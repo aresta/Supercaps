@@ -31,7 +31,7 @@ void setup() {
   radio.openWritingPipe( address);
   radio.setChannel(2);
   radio.setDataRate(RF24_250KBPS);
-  radio.setPALevel(RF24_PA_MIN);
+  radio.setPALevel(RF24_PA_LOW);
   radio.stopListening();
   // For debugging info
   // printf_begin();             // needed only once for printing details
@@ -60,17 +60,31 @@ void loop() {
   payload_data.sleep_mins = sleep_time;
 
   #ifdef DEBUG
-    Serial.println("temp, sleep, volts");
-    Serial.println(payload_data.temp);
-    Serial.println(payload_data.sleep_mins);
-    Serial.println(payload_data.volts);
+    Serial.print("temp:"); Serial.println(payload_data.temp);
+    Serial.print("pres:"); Serial.println(payload_data.pres);
+    Serial.print("hum:"); Serial.println(payload_data.hum);
+    Serial.print("volts:"); Serial.println(payload_data.volts);
+    Serial.print("sleep mins:"); Serial.println(payload_data.sleep_mins);
+    Serial.println("--------------");
+    Serial.print("size of:"); Serial.println(sizeof(payload_data));
+    Serial.print("temp2:"); Serial.println(payload_data.temp);
   #endif
 
   delay(300);
-  radio.write( &payload_data, sizeof(payload_data));
+  if( radio.write( &payload_data, sizeof(payload_data))){
+    Serial.println("radio write ok");
+  } else {
+    Serial.println("radio write error");
+  };
   #ifdef DEBUG
+    Serial.println("---------------------------");
     Serial.print("Temp:"); Serial.println( payload_data.temp);
     Serial.print("VCC:"); Serial.println( readVcc());
+    Serial.print("temp:"); Serial.println(payload_data.temp);
+    Serial.print("pres:"); Serial.println(payload_data.pres);
+    Serial.print("hum:"); Serial.println(payload_data.hum);
+    Serial.print("volts:"); Serial.println(payload_data.volts);
+    Serial.print("sleep mins:"); Serial.println(payload_data.sleep_mins);
   #endif
   sleep_secs( sleep_time * 60 );
 }
