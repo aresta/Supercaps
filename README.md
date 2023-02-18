@@ -75,7 +75,7 @@ The home of the device:
 
 <img src="img/board1.jpg" alt="supercaps arduino solar panel" style="width:500px;"/>
 
-The receiver gateway at the moment is in a protoboard. It could be anything with another RF24 module that gets the data and does something with it. This one consist in a Webos D1 Mini that send the measures to a DynamoDB cloud database via WIFI. This way I can produce charts of the temperature, humidity and pressure per day, week, month, year with maxims/minims, etc.
+The receiver gateway at the moment is in a protoboard. It could be anything with another RF24 module that gets the data and does something with it. This one consist in a Webos D1 Mini that sends the measures to a DynamoDB cloud database via WIFI. This way I can produce charts of the temperature, humidity and pressure per day, week, month, year with maxims/minims, etc.
 
 <img src="img/receptor.jpg" alt="supercaps arduino solar panel" style="width:500px;"/>
 
@@ -93,7 +93,7 @@ I know that it would work well and easily with small batteries but I wanted to d
 - All components are very cheap, about 10€ all including the supercaps and solar panel.
 - It needs no maintenance. Important in locations where the access in not so easy, like the top of a tree or the back of a bengala tiger.
 
-The main disadavange is that it works well for very low power consumption devices like this. Otherwise batteries can store more energy with less space and probably cost.
+The main disadavange is that it works well only for very low power consumption devices like this. Otherwise batteries can store more energy with less space and probably cost.
 
 
 
