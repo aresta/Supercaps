@@ -2,10 +2,14 @@ void connectWifi()
 {
   WiFi.mode(WIFI_STA);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD); 
-  Serial.println(String("Attempting to connect to SSID: ") + String(WIFI_SSID));
+  #ifdef DEBUG
+    Serial.println(String("Attempting to connect to SSID: ") + String(WIFI_SSID));
+  #endif
   while (WiFi.status() != WL_CONNECTED)
   {
-    Serial.print(".");
+    #ifdef DEBUG
+      Serial.print(".");
+    #endif
     delay(1000);
   }
   NTPConnect();
@@ -15,31 +19,41 @@ void connectWifi()
 
 void connectAWS()
 {
+  if(client.connected()) return;
   client.setServer( AWS_MQTT_HOST, 8883);
   // client.setCallback( messageReceived);
  
-  Serial.println("Connecting to AWS IOT");
+  #ifdef DEBUG
+    Serial.println("Connecting to AWS IOT");
+  #endif
   while (!client.connect( THINGNAME)) {
     // Serial.print(".");
     char err_buf[256];
     wifiClient.getLastSSLError(err_buf, sizeof(err_buf));
-    Serial.println(err_buf);
-    delay(1000);
+    #ifdef DEBUG
+      Serial.println(err_buf);
+    #endif
+    delay(800);
   }
  
   if (!client.connected()) {
-    Serial.println("AWS IoT Timeout!");
+    #ifdef DEBUG
+      Serial.println("AWS IoT Timeout!");
+    #endif
     return;
   }
   // Subscribe to a topic
   // client.subscribe(AWS_IOT_SUBSCRIBE_TOPIC);
- 
-  Serial.println("AWS IoT Connected!");
+  #ifdef DEBUG
+    Serial.println("AWS IoT Connected!");
+  #endif
 }
 
 void NTPConnect(void)
 {
-  Serial.print("Setting time using SNTP");
+  #ifdef DEBUG
+    Serial.print("Setting time using SNTP");
+  #endif
   configTime( TIME_ZONE * 3600, 1 * 3600, "pool.ntp.org", "time.nist.gov");
   configTime( 1, 1 * 3600, "pool.ntp.org", "time.nist.gov");
   time_t now;
@@ -48,14 +62,20 @@ void NTPConnect(void)
   while (now < nowish)
   {
     delay(500);
-    Serial.print(".");
+    #ifdef DEBUG
+      Serial.print(".");
+    #endif
     now = time(nullptr);
   }
-  Serial.println(" done!");
+  #ifdef DEBUG
+    Serial.println(" done!");
+  #endif
   struct tm timeinfo;
   gmtime_r( &now, &timeinfo);
-  Serial.print("Current time: ");
-  Serial.print( asctime( &timeinfo));
+  #ifdef DEBUG
+    Serial.print("Current time: ");
+    Serial.print( asctime( &timeinfo));
+  #endif
 }
 
 // void messageReceived(char *topic, byte *payload, unsigned int length)
