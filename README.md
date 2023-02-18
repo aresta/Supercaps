@@ -71,9 +71,13 @@ The PCB design:
 <img src="img/PCB_3d_emisor.jpg" alt="supercaps arduino solar panel" style="width:400px;"/>
 
 
-And the home of the device:
+The home of the device:
 
 <img src="img/board1.jpg" alt="supercaps arduino solar panel" style="width:500px;"/>
+
+The receiver gateway at the moment is in a protoboard. It could be anything with another RF24 module that gets the data and does something with it. This one consist in a Webos D1 Mini that send the measures to a DynamoDB cloud database via WIFI. This way I can produce charts of the temperature, humidity and pressure per day, week, month, year with maxims/minims, etc.
+
+<img src="img/receptor.jpg" alt="supercaps arduino solar panel" style="width:500px;"/>
 
 
 I know that it would work well and easily with small batteries but I wanted to do this project as a proof concept and for learning. It has been a nice challenge and I find amazing that it's posible to do so much with such small caps.  And anyway it works very well.
