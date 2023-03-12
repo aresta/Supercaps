@@ -3,7 +3,7 @@
 
 This is a little sun powered board with ultra low power consumption and zero maintenance. It measures temperature, humidity, pressure and sends it every 15 minutes with a RF module.
 
-The small solar panel (8 x 6 cms) harvest energy to charge two small and cheap super capacitors of 5F each. 
+The small solar panel (8 x 6 cms) harvest energy to charge one small and cheap super capacitor of 5F. 
 It can run alone almost forever, at least until the caps die. But supercapacitors have a much longer lifespan than batteries.
 
 It can survive without sun about 80 hours, more than 3 days! I tested it with the solar panel disconnected.
